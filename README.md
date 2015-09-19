@@ -6,9 +6,9 @@ How to
 ======
 * install
 
-```shell
-npm install bluesky-client-libnodejs
-```
+ ```shell
+ npm install bluesky-client-libnodejs
+ ```
 
 * write the code (for example)
 
