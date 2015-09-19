@@ -6,8 +6,9 @@
  * Create date: 2015-09-18
  *
  * NOTE: Need fix again. (Problem is the callback feature of 'request' 
- *       and 'http' library cause the random (out of control the sequence of 
- *       request the login-logout package to the system.))
+ *       and 'http' library cause the random the request messages for 
+ *       login-logout to the system (out of control the sequece of 
+ *       the operation).)
  */
 
 /**
