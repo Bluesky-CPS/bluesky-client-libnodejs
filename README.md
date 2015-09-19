@@ -10,10 +10,15 @@ How to
 npm install bluesky-client-libnodejs
 ```
 
-* write the code
+* write the code (for example)
 
-```shell
-var blueskyconn = require('bluesky-client-libnodejs');
-var conn = new blueskyconn('http://127.0.0.1:8189', 'guest', 'guest');
-conn.list_ed();
-```
+ [ listed.js ]
+ ```shell
+ var blueskyconn = require('bluesky-client-libnodejs');
+ var conn = new blueskyconn('http://127.0.0.1:8189', 'guest', 'guest');
+ conn.list_ed();
+ ```
+* running the code 
+ ```shell
+ node listed.js
+ ```
