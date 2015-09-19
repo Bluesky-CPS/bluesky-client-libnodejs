@@ -1,0 +1,27 @@
+{
+  "name": "bluesky-client-libnodejs",
+  "version": "0.0.0",
+  "description": "The testing package version 0.0.0 of client library connecting blue-sky server (The library responds as a browser HTTP client).",
+  "main": "bluesky-cli.js",
+  "dependencies": {
+    "http": "^0.0.0",
+    "request": "^2.62.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node testlib.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bluesky-CPS/bluesky-client-libnodejs.git"
+  },
+  "keywords": [
+    "bluesky"
+  ],
+  "author": "Praween AMONTAMAVUT <praween@hykwlab.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bluesky-CPS/bluesky-client-libnodejs/issues"
+  },
+  "homepage": "https://github.com/Bluesky-CPS/bluesky-client-libnodejs#readme"
+}
