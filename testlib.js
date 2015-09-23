@@ -15,6 +15,7 @@ listEd.on('list_ed', function(listingED){
 	}
 });
 
-
-
-
+listEd.getEdIp("your-embeddedDevice-name-connected-bluesky");
+listEd.on('selectedEDIP', function(selectedEDIP){
+	console.log(selectedEDIP);
+});

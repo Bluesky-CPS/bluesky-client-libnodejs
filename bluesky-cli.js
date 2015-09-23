@@ -53,7 +53,9 @@ var _e = {
 	logout_chunk: 'logout_chunk',
 	login_result: 'login_result',
 	logout_result: 'logout_result',
-	sensornetwork_result: 'sensornetwork_result'
+	sensornetwork_result: 'sensornetwork_result',
+	selectedEDIP: 'selectedEDIP'
+	
 };
 
 /**
@@ -157,7 +159,6 @@ blueskyconn.prototype.sensornetwork = function(opts){
 	function(callback){
 		self.login();
 		self.on('login_result', function(chunk){
-			//console.log(chunk);
 			
 		});
 		callback(null, "login");
@@ -165,31 +166,14 @@ blueskyconn.prototype.sensornetwork = function(opts){
 		var uri = 'http://' + self.blueskyGateway + ':' + self.blueskyPort + params;
 		var reqs = unirest.get(uri).header('Accept', 'text/html')
 			.end(function (response) {
-				var body = response.body;
-				//console.log("GET: " + body);
 				self.emit(_e.sensornetwork_result, response.body);
 				
 			});
-		/*self.get('http://' + self.blueskyGateway + ':' + self.blueskyPort + params, function (body) {
-			console.log(body);
-		});*/
-
-		/*var req = http.get('http://' + self.blueskyGateway + ':' + self.blueskyPort + params, function(res) {
-			// output response body
-			res.setEncoding('utf8');
-			res.on('data', function(str) {
-				console.log(str);
-			});
-		});
-		// error handler
-		req.on('error', function(err) {
-			console.log("Error: " + err.message);
-		});*/
 		callback(null, "Calling API");
 	},function(callback){
 		self.logout();
 		self.on('logout_result', function(chunk){
-			//console.log(chunk);
+			
 		});
 		callback(null, "logout");
 	}], function(err, results){
@@ -252,10 +236,17 @@ blueskyconn.prototype.getEdIp = function(edname){
 	self.on('list_ed', function(list_ed){
 		var ed_arr = JSON.parse(list_ed).ETLog.EDConnStatement;
 		if(typeof ed_arr !== 'undefined' && ed_arr !== null && Array.isArray(ed_arr)){
+			var isHasIt = false;
 			for(var i = 0; i < ed_arr.length; i++){
-				if(edname === ed_arr[i].EDCNAME)
-					console.log(ed_arr[i].EDIP);
+				if(edname === ed_arr[i].EDCNAME){
+					self.emit(self.emit(_e.selectedEDIP, ed_arr[i].EDIP));
+					isHasIt = true;
+					break;
+				}
 			}
+			if(!isHasIt) self.emit(_e.selectedEDIP, 'undefined');
+		}else{
+			self.emit(_e.selectedEDIP, 'undefined');		
 		}
 	});
 }
@@ -279,7 +270,8 @@ blueskyconn.prototype.createBlueskyParam = function(instruction, opts){
  */
 blueskyconn.prototype.blueskyGet = function(blueskyParam){
 	var self = this;
-	
+
+// Need fix after.	
 //	this.login();
 //	this.login();
 
@@ -310,8 +302,6 @@ blueskyconn.prototype.blueskyGet = function(blueskyParam){
 	req.write("{}");
 	req.end();
 
-	//console.log("blueskyGet: " + req.res);
-
 //	this.logout();
 //	this.logout();
 
@@ -330,10 +320,7 @@ blueskyconn.prototype.login = function(){
 		var req = http.request(self.loginOption, function(res) {
 			res.setEncoding('utf8');
 			res.on('data', function (chunk) {
-				//var chunk = chunk;
-				//console.log(chunk);
 				self.emit(_e.login_chunk, chunk);
-				
 			});
 	
 		});
@@ -363,17 +350,6 @@ blueskyconn.prototype.login = function(){
 		}
 		//console.log('series all done. ' + results);
 	});
-
-	/*var req = http.request(this.loginOption, function(res) {
-		res.setEncoding('utf8');
-		res.on('data', function (chunk) {
-			self.emit(_e.login_chunk, chunk);
-		});
-	
-	});
-
-	req.write(this.loginParams);
-	req.end();*/
 }
 
 /**
@@ -417,17 +393,6 @@ blueskyconn.prototype.logout = function(){
 		}
 		//console.log('series all done. ' + results);
 	});
-
-	/*var req = http.request(this.logoutOption, function(res) {
-		res.setEncoding('utf8');
-		res.on('data', function (chunk) {
-			//console.log(chunk);
-			self.emit(_e.logout_chunk, chunk);
-		});
-	});
-
-	req.write(this.logoutParams);
-	req.end();*/
 }
 
 module.exports = blueskyconn;
