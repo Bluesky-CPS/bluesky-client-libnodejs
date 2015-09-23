@@ -1,6 +1,6 @@
 # bluesky-client-libnodejs
 
-The testing package version 0.0.0 of client library connecting blue-sky server (The library responds as a browser HTTP client).
+The testing package version 0.0.0 of client library connecting [blue-sky server](https://github.com/Bluesky-CPS/BlueSkyLoggerCloudBINResearchVer1.0) (The library responds as a browser HTTP client).
 
 How to
 ======
