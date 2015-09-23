@@ -245,6 +245,22 @@ blueskyconn.prototype.list_ed = function(){
 }
 
 /**
+ * get the IP address of embeddeded device by device name.
+ */
+blueskyconn.prototype.getEdIp = function(edname){
+	var self = this;
+	self.on('list_ed', function(list_ed){
+		var ed_arr = JSON.parse(list_ed).ETLog.EDConnStatement;
+		if(typeof ed_arr !== 'undefined' && ed_arr !== null && Array.isArray(ed_arr)){
+			for(var i = 0; i < ed_arr.length; i++){
+				if(edname === ed_arr[i].EDCNAME)
+					console.log(ed_arr[i].EDIP);
+			}
+		}
+	});
+}
+
+/**
  * Convert to parameter of HTTP
  */
 blueskyconn.prototype.createBlueskyParam = function(instruction, opts){
