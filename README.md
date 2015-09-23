@@ -16,7 +16,10 @@ How to
  ```shell
  var blueskyconn = require('bluesky-client-libnodejs');
  var conn = new blueskyconn('http://127.0.0.1:8189', 'guest', 'guest');
- conn.list_ed();
+ var listEd = conn.list_ed();
+ listEd.on('list_ed', function(listingED){
+	 console.log(ed_arr);
+ });
  ```
 * running the code 
 
