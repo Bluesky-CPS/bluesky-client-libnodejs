@@ -4,8 +4,11 @@
   "description": "The testing package version 0.0.0 of client library connecting blue-sky server (The library responds as a browser HTTP client).",
   "main": "bluesky-cli.js",
   "dependencies": {
+    "async": "^1.4.2",
     "http": "^0.0.0",
-    "request": "^2.62.0"
+    "request": "^2.62.0",
+    "sleep": "^3.0.0",
+    "unirest": "^0.4.2"
   },
   "devDependencies": {},
   "scripts": {
