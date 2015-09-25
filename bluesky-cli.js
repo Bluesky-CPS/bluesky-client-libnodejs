@@ -1,4 +1,4 @@
-/**
+/*
  * This is bluesky-cli connector library for nodejs programming user.
  * 
  * Author: Praween AMONTAMAVUT (Hayakawa Laboratory)
@@ -239,7 +239,7 @@ blueskyconn.prototype.getEdIp = function(edname){
 			var isHasIt = false;
 			for(var i = 0; i < ed_arr.length; i++){
 				if(edname === ed_arr[i].EDCNAME){
-					self.emit(self.emit(_e.selectedEDIP, ed_arr[i].EDIP));
+					self.emit(_e.selectedEDIP, ed_arr[i].EDIP);
 					isHasIt = true;
 					break;
 				}
